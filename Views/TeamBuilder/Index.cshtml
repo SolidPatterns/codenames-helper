@@ -1,4 +1,6 @@
-@{ ViewData["Title"] = "Team Builder"; }
+@model IList<CodeNamesHelper.Models.Player>
+
+@{ViewData["Title"] = "Team Builder"; }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
@@ -18,54 +20,65 @@
                 <th>Name</th>
             </thead>
             <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td>
-                        1
+                        @item.Id
                     </td>
                     <td>
-                        Kemal
+                        @item.Name
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        Ali
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        3
-                    </td>
-                    <td>
-                        Mert
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        4
-                    </td>
-                    <td>
-                        Doruk
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        5
-                    </td>
-                    <td>
-                        Uğur
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        6
-                    </td>
-                    <td>
-                        Yalın
-                    </td>
-                </tr>
+            }
+            @*<tr>
+                <td>
+                    1
+                </td>
+                <td>
+                    Kemal
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    2
+                </td>
+                <td>
+                    Ali
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    3
+                </td>
+                <td>
+                    Mert
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    4
+                </td>
+                <td>
+                    Doruk
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    5
+                </td>
+                <td>
+                    Uğur
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    6
+                </td>
+                <td>
+                    Yalın
+                </td>
+            </tr>*@
             </tbody>
         </table>
     </div>

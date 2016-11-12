@@ -1,0 +1,138 @@
+@{ ViewData["Title"] = "Team Builder"; }
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<section title="team-builder">
+    <form asp-action="Add" method="POST">
+        <div class="form-group">
+            <label for="playerName">Name</label>
+            <input name="playerName" type="input" class="form-control" id="playerName" placeholder="Please enter player name">
+        </div>
+        <button type="submit" class="btn btn-default">Add</button>
+    </form>
+
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <th>#</th>
+                <th>Name</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        Kemal
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        Ali
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        3
+                    </td>
+                    <td>
+                        Mert
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        4
+                    </td>
+                    <td>
+                        Doruk
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        5
+                    </td>
+                    <td>
+                        Uğur
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        6
+                    </td>
+                    <td>
+                        Yalın
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit" class="btn btn-default">Generate Teams</button>
+
+    <table class="table table-hover">
+            <thead>
+                <th>Team</th>
+                <th>Name</th>
+                <th>Role</th>
+            </thead>
+            <tbody>
+                <tr class="danger">
+                    <td>Red Team</td>
+                    <td>
+                        Kemal
+                    </td>
+                    <td>
+                        Master
+                    </td>
+                </tr>
+                <tr class="danger">
+                    <td>Red Team</td>
+                    <td>
+                        Ali
+                    </td>
+                    <td>
+                        Agent
+                    </td>
+                </tr>
+                <tr class="danger">
+                    <td>Red Team</td>
+                    <td>
+                        Mert
+                    </td>
+                    <td>
+                        Agent
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>Blue Team</td>
+                    <td>
+                        Doruk
+                    </td>
+                    <td>
+                        Master
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>Blue Team</td>
+                    <td>
+                        Uğur
+                    </td>
+                    <td>
+                        Agent
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>Blue Team</td>
+                    <td>
+                        Yalın
+                    </td>
+                    <td>
+                        Agent
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>

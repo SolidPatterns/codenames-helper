@@ -13,5 +13,8 @@
             "showOutput": "silent",
             "problemMatcher": "$msCompile"
         }
-    ]
+    ],
+    "buildOptions": {
+    "debugType": "portable"
+  }
 }

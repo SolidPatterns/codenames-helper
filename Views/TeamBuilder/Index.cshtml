@@ -1,8 +1,8 @@
-@model IList<CodeNamesHelper.Models.Player>
+@model CodeNamesHelper.Models.CodeNamesContext
 
 @{ViewData["Title"] = "Team Builder"; }
 <h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<div class="alert alert-danger" role="alert">@ViewData["Message"]</div>
 
 <section title="team-builder">
     <form asp-action="Add" method="POST">
@@ -20,7 +20,7 @@
                 <th>Name</th>
             </thead>
             <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Players)
             {
                 <tr>
                     <td>
@@ -31,121 +31,52 @@
                     </td>
                 </tr>
             }
-            @*<tr>
-                <td>
-                    1
-                </td>
-                <td>
-                    Kemal
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    2
-                </td>
-                <td>
-                    Ali
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    3
-                </td>
-                <td>
-                    Mert
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    4
-                </td>
-                <td>
-                    Doruk
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    5
-                </td>
-                <td>
-                    Uğur
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    6
-                </td>
-                <td>
-                    Yalın
-                </td>
-            </tr>*@
             </tbody>
         </table>
     </div>
 
-    <button type="submit" class="btn btn-default">Generate Teams</button>
-
-    <table class="table table-hover">
+    <form asp-action="Generate" method="POST">
+        <button type="submit" class="btn btn-default">Generate Teams</button>
+        <table class="table table-hover">
             <thead>
-                <th>Team</th>
-                <th>Name</th>
-                <th>Role</th>
+            <th>Id</th>
+            <th>Role</th>
+            <th>Name</th>
             </thead>
             <tbody>
+            @foreach (var item in Model.RedTeam.Players)
+            {
                 <tr class="danger">
-                    <td>Red Team</td>
                     <td>
-                        Kemal
+                        @item.Id
                     </td>
                     <td>
-                        Master
-                    </td>
-                </tr>
-                <tr class="danger">
-                    <td>Red Team</td>
-                    <td>
-                        Ali
+                        @item.Role
                     </td>
                     <td>
-                        Agent
+                        @item.Name
                     </td>
                 </tr>
-                <tr class="danger">
-                    <td>Red Team</td>
-                    <td>
-                        Mert
-                    </td>
-                    <td>
-                        Agent
-                    </td>
-                </tr>
+            }
+            @foreach (var item in Model.BlueTeam.Players)
+            {
                 <tr class="info">
-                    <td>Blue Team</td>
                     <td>
-                        Doruk
+                        @item.Id
                     </td>
                     <td>
-                        Master
-                    </td>
-                </tr>
-                <tr class="info">
-                    <td>Blue Team</td>
-                    <td>
-                        Uğur
+                        @item.Role
                     </td>
                     <td>
-                        Agent
+                        @item.Name
                     </td>
                 </tr>
-                <tr class="info">
-                    <td>Blue Team</td>
-                    <td>
-                        Yalın
-                    </td>
-                    <td>
-                        Agent
-                    </td>
-                </tr>
+            }
             </tbody>
         </table>
+    </form>
+
+    <form asp-action="Reset" method="POST">
+        <button type="submit" class="btn btn-danger">Reset</button>
+    </form>
 </section>

@@ -24,5 +24,11 @@ namespace CodeNamesHelper.Models
         {
             return type == TeamType.Blue ? RedTeam : BlueTeam;
         }
+
+        public void ResetTeams()
+        {
+            BlueTeam = new Team { TeamType = TeamType.Blue };
+            RedTeam = new Team { TeamType = TeamType.Red };
+        }
     }
 }

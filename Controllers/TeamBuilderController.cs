@@ -55,6 +55,7 @@ namespace CodeNamesHelper.Controllers
 
         private static void GenerateTeams()
         {
+            _codeNamesContext.ResetTeams();
             _codeNamesContext.Players.Shuffle();
             var teamPicker = new Random();
             var pickedTeam = teamPicker.Next(0, 2);

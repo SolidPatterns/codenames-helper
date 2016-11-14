@@ -1,82 +1,96 @@
+@using Microsoft.AspNetCore.Server.Kestrel.Internal.Http
 @model CodeNamesHelper.Models.CodeNamesContext
 
 @{ViewData["Title"] = "Team Builder"; }
 <h2>@ViewData["Title"]</h2>
-<div class="alert alert-danger" role="alert">@ViewData["Message"]</div>
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-danger" role="alert">@ViewData["Message"]</div>
+}
+
 
 <section title="team-builder">
     <form asp-action="Add" method="POST">
         <div class="form-group">
             <label for="playerName">Name</label>
-            <input name="playerName" type="input" class="form-control" id="playerName" placeholder="Please enter player name">
+            <input name="playerName" type="text" class="form-control" id="playerName" placeholder="Please enter player name">
         </div>
         <button type="submit" class="btn btn-default">Add</button>
     </form>
 
-    <div>
+    @if (Model.Players.Any())
+    {
+        <div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Players)
+                {
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="/teambuilder/delete/@item.Id" title="Remove">Remove</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <a href="/teambuilder/generate" class="btn btn-default">Generate Teams</a>
+    }
+
+    @if (Model.BlueTeam.Players.Any() && Model.RedTeam.Players.Any())
+    {
         <table class="table table-hover">
             <thead>
-                <th>#</th>
-                <th>Name</th>
-            </thead>
-            <tbody>
-            @foreach (var item in Model.Players)
-            {
                 <tr>
-                    <td>
-                        @item.Id
-                    </td>
-                    <td>
-                        @item.Name
-                    </td>
+                    <th>Id</th>
+                    <th>Role</th>
+                    <th>Name</th>
                 </tr>
-            }
-            </tbody>
-        </table>
-    </div>
-
-    <form asp-action="Generate" method="POST">
-        <button type="submit" class="btn btn-default">Generate Teams</button>
-        <table class="table table-hover">
-            <thead>
-            <th>Id</th>
-            <th>Role</th>
-            <th>Name</th>
             </thead>
             <tbody>
-            @foreach (var item in Model.RedTeam.Players)
-            {
-                <tr class="danger">
-                    <td>
-                        @item.Id
-                    </td>
-                    <td>
-                        @item.Role
-                    </td>
-                    <td>
-                        @item.Name
-                    </td>
-                </tr>
-            }
-            @foreach (var item in Model.BlueTeam.Players)
-            {
-                <tr class="info">
-                    <td>
-                        @item.Id
-                    </td>
-                    <td>
-                        @item.Role
-                    </td>
-                    <td>
-                        @item.Name
-                    </td>
-                </tr>
-            }
+                @foreach (var item in Model.RedTeam.Players)
+                {
+                    <tr class="danger">
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.Role
+                        </td>
+                        <td>
+                            @item.Name
+                        </td>
+                    </tr>
+                }
+                @foreach (var item in Model.BlueTeam.Players)
+                {
+                    <tr class="info">
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.Role
+                        </td>
+                        <td>
+                            @item.Name
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
-    </form>
-
-    <form asp-action="Reset" method="POST">
-        <button type="submit" class="btn btn-danger">Reset</button>
-    </form>
+        <a href="/teambuilder/reset" class="btn btn-danger">Reset</a>
+    }
 </section>

@@ -23,7 +23,7 @@ namespace CodeNamesHelper.Controllers
             return View("Index", _codeNamesContext);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Generate()
         {
             if (_codeNamesContext.Players.Count <= 3)
@@ -38,10 +38,18 @@ namespace CodeNamesHelper.Controllers
             return View("Index", _codeNamesContext);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Reset()
         {
             _codeNamesContext = new CodeNamesContext();
+            return View("Index", _codeNamesContext);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var playerToDelete = _codeNamesContext.Players.FirstOrDefault(x => x.Id.Equals(id));
+            _codeNamesContext.Players.Remove(playerToDelete);
             return View("Index", _codeNamesContext);
         }
 
